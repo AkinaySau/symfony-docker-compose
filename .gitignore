@@ -1,2 +1,6 @@
+.idea
 src
-#db/data #uncomment if not need commit database
+logs
+
+#you should comment if you need to commit the database
+db/data
