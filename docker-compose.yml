@@ -51,6 +51,6 @@ services:
     build:
       context: ./build/node
     ports:
-      - ${ENCORE_PORT}:80
+      - ${ENCORE_PORT}:8080
     volumes:
       - ./src:/var/www
