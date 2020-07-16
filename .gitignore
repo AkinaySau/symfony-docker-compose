@@ -1,6 +1,6 @@
 .idea
 src
 logs
-
+.env
 #you should comment if you need to commit the database
 db/data
