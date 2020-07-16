@@ -14,7 +14,7 @@ services:
     volumes:
       - ./db/import:/docker-entrypoint-initdb.d
       - ./db/data:/var/lib/mysql
-  php-fpm:
+  symfony:
     build:
       context: ./build/php-fpm
     depends_on:
@@ -47,7 +47,7 @@ services:
       ADMINER_DESIGN: ${ADMINER_DESIGN}
     depends_on:
       - db
-  node:
+  webpack:
     build:
       context: ./build/node
     ports:
