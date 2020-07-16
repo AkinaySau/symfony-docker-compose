@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  db:
+  database:
     image: mariadb
     restart: always
     environment:
@@ -18,11 +18,11 @@ services:
     build:
       context: ./build/php-fpm
     depends_on:
-      - db
+      - database
     environment:
       APP_ENV: ${APP_ENV}
       APP_SECRET: ${APP_SECRET}
-      DATABASE_URL: mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@db:3306/${DATABASE_NAME}?serverVersion=10.4.12
+      DATABASE_URL: mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@database:3306/${DATABASE_NAME}?serverVersion=10.4.12
     volumes:
       - ./src:/var/www
   nginx:
@@ -35,7 +35,7 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d
       - ./logs:/var/log/nginx
     depends_on:
-      - php-fpm
+      - symfony
     ports:
       - ${NGINX_PORT}:80
   adminer:
@@ -46,7 +46,7 @@ services:
     environment:
       ADMINER_DESIGN: ${ADMINER_DESIGN}
     depends_on:
-      - db
+      - database
   webpack:
     build:
       context: ./build/node
