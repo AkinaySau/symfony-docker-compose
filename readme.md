@@ -1,5 +1,8 @@
 # Readme
-For open zsh: 
+## Install
+To start, copy `.env.example ' to`. env` and change your ports (if necessary)
+
+Open zsh: 
 ```bash
 $ docker exec -it %_php-fpm_1 zsh
 ```
@@ -10,7 +13,27 @@ $ symfony new --full .
 
 ## Symfony
  - Project store `./src`
+### Webpack encore
+For use encore run command in symfony container
 
+
+For enable hot reload 
+```js
+// webpack.config.js
+...
+Encore
+  // any configs
+
+  //add configs for dev server 
+  .configureDevServerOptions(options => {
+    options.port = 80, 
+    options.host = '0.0.0.0',
+    options.watchOptions = {
+      aggregateTimeout: 500,
+      poll: 1000,
+        };
+  })
+```
 ## Database
  - Data store `./db/data`
  - For import base data (only for first initialize a container) need
